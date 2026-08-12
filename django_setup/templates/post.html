@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{post.name}}</title>
+
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+  </head>
+  <body>
+    <div class="grid">
+      <div class="p-25 grid gap-10">
+        <a href="{% url 'posts' %}">Go back</a>
+        <h2 class="text-4xl font-bold">{{post.name}}</h2>
+        <p class="text-lg">{{post.body | linebreaksbr }}</p>
+        <div class="grid">
+          <span>Posted By: Unknown</span>
+          <span><b>Date Posted: </b>{{post.date}}</span>
+          <span><b>Last edited: </b>{{post.last_edited}}</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

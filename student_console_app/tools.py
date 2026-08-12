@@ -236,3 +236,6 @@ Age: {age}\n
                 with open(student_file, "a") as file:
                     file.write(info)
             print(f"Student record written into {student_file}")
+
+
+print(f"Current file name: {__name__}")

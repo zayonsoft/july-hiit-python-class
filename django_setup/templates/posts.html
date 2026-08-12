@@ -1,0 +1,79 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <style>
+      .post-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        font-family: sans-serif;
+      }
+      .post-content {
+        padding: 20px;
+      }
+      .post-category {
+        font-size: 12px;
+        color: #0066cc;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .post-title {
+        font-size: 20px;
+        margin: 10px 0;
+        color: #333333;
+      }
+      .post-excerpt {
+        font-size: 14px;
+        color: #666666;
+        line-height: 1.5;
+      }
+      .post-author {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #999999;
+        margin-top: 20px;
+        border-top: 1px solid #eeeeee;
+        padding-top: 12px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-300">
+    <h1 class="text-center text-3xl p-2 font-bold">
+      Our Stories ({{posts.count}})
+    </h1>
+    <div class="grid gap-1 justify-center items-center">
+      {% for post in posts %}
+      <div class="post-card w-9/10 max-w-150">
+        <div class="post-content">
+          <span class="post-category">Technology</span>
+          <h2 class="post-title">{{post.name}}</h2>
+          <p class="post-excerpt">{{post.body | truncatewords:15 }}</p>
+          <div class="post-author">
+            <span>By Unknown</span>
+            <span>{{post.date}}</span>
+          </div>
+        </div>
+        <div class="grid gap-px">
+          <a
+            class="bg-blue-600 text-gray-200 p-2 rounded-sm"
+            href="{% url 'post' post.id %}"
+            >Read more </a
+          ><br />
+          <a
+            class="bg-blue-600 text-gray-200 p-2 rounded-sm"
+            href="/posts/{{post.id}}"
+            >Second Read more
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
