@@ -12,3 +12,15 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Title: {self.name}, Last edited: {self.last_edited.date()}"
+
+
+
+class Student(models.Model):
+    ...
+    #first_name
+    #last_name
+    #phone_number
+    #brief_description
+
+
+# Student.objects.create()
