@@ -5,6 +5,7 @@ from projectapp.forms import PostForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -182,6 +183,7 @@ def student_list(request):
     return render(request, "students/students-table.html", context)
 
 
+@login_required(login_url="login")
 def edit_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
 
@@ -216,3 +218,7 @@ def delete_student(request, pk):
 
     context = {"student": student}
     return render(request, "students/delete-student.html", context)
+
+
+def login(request):
+    return render(request, "auth/login.html")
