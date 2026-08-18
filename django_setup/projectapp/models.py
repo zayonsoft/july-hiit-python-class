@@ -14,13 +14,10 @@ class Post(models.Model):
         return f"Title: {self.name}, Last edited: {self.last_edited.date()}"
 
 
-
 class Student(models.Model):
-    ...
-    #first_name
-    #last_name
-    #phone_number
-    #brief_description
-
-
-# Student.objects.create()
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=25)
+    description = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)

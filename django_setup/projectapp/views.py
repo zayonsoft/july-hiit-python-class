@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
-from projectapp.models import Post
+from projectapp.models import Post, Student
 from projectapp.forms import PostForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -150,3 +150,69 @@ def custom_create_user(request):
         return redirect("custom_create_user")
 
     return render(request, "custom_create_user.html")
+
+
+def create_students(request):
+    if request.method == "POST":
+        first_name = request.POST.get("firstName")
+        last_name = request.POST.get("lastName")
+        description = request.POST.get("description")
+        phone_number = request.POST.get("phone")
+
+        if not (first_name and last_name and description and phone_number):
+            messages.error(request, "All fields are required")
+            return redirect("create_students")
+
+        student = Student.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            description=description,
+            phone_number=phone_number,
+        )
+
+        messages.success(request, f"Student {student.first_name} added successfully")
+        return redirect("student_list")
+    return render(request, "students/create.html")
+
+
+def student_list(request):
+    students = Student.objects.all()
+
+    context = {"students": students}
+    return render(request, "students/students-table.html", context)
+
+
+def edit_student(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+
+    if request.method == "POST":
+        first_name = request.POST.get("firstName")
+        last_name = request.POST.get("lastName")
+        description = request.POST.get("description")
+        phone_number = request.POST.get("phone")
+
+        if not (first_name and last_name and description and phone_number):
+            messages.error(request, "All fields are required")
+            return redirect("edit_student", pk=pk)
+
+        student.first_name = first_name
+        student.last_name = last_name
+        student.description = description
+        student.phone_number = phone_number
+        student.save()
+        messages.success(request, "Student Updated Successfully!")
+        return redirect("student_list")
+
+    context = {"student": student}
+    return render(request, "students/edit.html", context)
+
+
+def delete_student(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == "POST":
+        student.delete()
+        messages.success(request, "Student deleted!")
+        return redirect("student_list")
+
+    context = {"student": student}
+    return render(request, "students/delete-student.html", context)

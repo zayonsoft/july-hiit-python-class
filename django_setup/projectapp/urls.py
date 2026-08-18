@@ -14,4 +14,8 @@ urlpatterns = [
     path("user/create/", views.create_user, name="create_user"),
     path("user/custom_create/", views.custom_create_user, name="custom_create_user"),
     path("user/submit/", views.submit_form, name="submit_form"),
+    path("students/create/", views.create_students, name="create_students"),
+    path("students/<str:pk>/edit/", views.edit_student, name="edit_student"),
+    path("students/<str:pk>/delete/", views.delete_student, name="delete_student"),
+    path("students/", views.student_list, name="student_list"),
 ]
