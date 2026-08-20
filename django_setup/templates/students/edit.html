@@ -349,7 +349,10 @@
     <div class="wrap">
       <header class="page">
         <h1>Edit Student</h1>
-        <span class="roll" id="today"></span>
+        <span class="roll"
+          >Hello, {{request.user.username}}/
+          <a href="{% url 'logout' %}">Logout</a></span
+        >
       </header>
 
       <div class="grid">

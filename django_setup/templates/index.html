@@ -14,8 +14,20 @@
     <a class="text-white" href="/about">About Page</a><br />
     <a class="text-white" href="{% url 'about' %}">About Page</a><br />
     <a class="text-white" href="{% url 'posts' %}">Posts</a><br />
-    <a class="text-white" href="{% url 'create_user' %}">Create Account</a
+
+    {% if not request.user.is_authenticated %}
+    <a
+      class="bg-white text-black p-2 block w-fit"
+      href="{% url 'custom_create_user' %}"
+      >Signup/Signin</a
     ><br />
+    {% else %}
+    <a
+      class="bg-white text-black p-2 block w-fit"
+      href="{% url 'student_list' %}"
+      >Continue</a
+    ><br />
+    {% endif %}
     <img
       src="{% static 'images/goat.jpg' %}"
       alt="Goat Image"

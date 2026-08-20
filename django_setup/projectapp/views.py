@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 
 # Create your views here.
 
@@ -148,7 +149,7 @@ def custom_create_user(request):
         messages.success(
             request, f"Hi {created_user.username}! Your account has been created!"
         )
-        return redirect("custom_create_user")
+        return redirect("login")
 
     return render(request, "custom_create_user.html")
 
@@ -221,4 +222,21 @@ def delete_student(request, pk):
 
 
 def login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = auth.authenticate(request, username=username, password=password)
+
+        if user is None:
+            messages.error(request, "Invalid login credentials")
+            return redirect("login")
+
+        auth.login(request, user)
+        return redirect("home")
     return render(request, "auth/login.html")
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("login")

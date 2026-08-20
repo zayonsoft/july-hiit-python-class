@@ -173,9 +173,13 @@
       <header>
         <h1>Welcome back</h1>
         <p>Log in to manage the student roster</p>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
       </header>
 
-      <form action="/login" method="post">
+      <form action="" method="post">
+        {% csrf_token %}
         <div class="field">
           <label for="username">Username</label>
           <input
@@ -212,7 +216,8 @@
       </form>
 
       <p class="signup">
-        Don't have an account? <a href="signup.html">Sign up</a>
+        Don't have an account?
+        <a href="{% url 'custom_create_user' %}">Sign up</a>
       </p>
     </div>
   </body>
