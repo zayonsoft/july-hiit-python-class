@@ -9,6 +9,11 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class MenuSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(
+        source="category", write_only=True, queryset=Category.objects.all()
+    )
+
     class Meta:
         model = Menu
         fields = "__all__"
