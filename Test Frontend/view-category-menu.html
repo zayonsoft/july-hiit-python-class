@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Menu - Category</title>
+    <style>
+      :root {
+        --blue-800: #103e8c;
+        --blue-600: #1e6fd9;
+        --blue-500: #2f8bf0;
+        --blue-100: #e6f0ff;
+        --blue-50: #f4f8ff;
+        --gray-600: #5b6b7d;
+        --gray-200: #dde6f2;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 32px 16px;
+        background: var(--blue-50);
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        width: 100%;
+        max-width: 560px;
+      }
+      h1 {
+        color: var(--blue-800);
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      /* Category list */
+      .category-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .category-card {
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 12px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        transition:
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+      a.category-card:hover {
+        box-shadow: 0 6px 18px rgba(16, 62, 140, 0.12);
+        border-color: var(--blue-500);
+      }
+      .category-card .name {
+        font-weight: 600;
+        color: var(--blue-800);
+        font-size: 15px;
+      }
+      .category-card .count {
+        font-size: 12px;
+        color: var(--gray-600);
+      }
+      .category-card .arrow {
+        color: var(--blue-500);
+        font-size: 18px;
+        margin-left: 12px;
+      }
+
+      /* Dish sections */
+      .dish-section {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 2px dashed var(--gray-200);
+      }
+      a.back-link {
+        display: inline-block;
+        color: var(--blue-600);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-bottom: 14px;
+      }
+      a.back-link:hover {
+        text-decoration: underline;
+      }
+
+      ul.items {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      ul.items li {
+        padding: 14px 18px;
+        border-top: 1px solid var(--gray-200);
+        font-size: 14.5px;
+        color: #1b2a3c;
+      }
+      ul.items li:first-child {
+        border-top: none;
+      }
+      .content-div {
+        display: grid;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="top">Category -</h1>
+      <div id="category-list" class="category-list"></div>
+    </div>
+  </body>
+  <script src="./view-category-menu.js"></script>
+</html>
