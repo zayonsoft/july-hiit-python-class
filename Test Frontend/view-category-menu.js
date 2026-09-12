@@ -1,10 +1,11 @@
 async function viewCategoryMenuApp() {
   const params = new URLSearchParams(window.location.search);
+  //   fetch the specific ID from page params
   const categoryId = params.get("id");
+  // set the menuUrl to call the endpoint based on with the category_id as params
   const menuUrl = `http://localhost:8000/api/menu/?category_id=${categoryId}`;
   const menuCategoryUrl = `http://localhost:8000/api/categories/${categoryId}/`;
   const contentDiv = document.getElementById("category-list");
-  //   fetch the specific ID
   try {
     // Fetch menu based on the category ID
     const title = document.querySelector("title");
