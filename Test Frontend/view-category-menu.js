@@ -7,7 +7,7 @@ async function viewCategoryMenuApp() {
   const menuCategoryUrl = `http://localhost:8000/api/categories/${categoryId}/`;
   const contentDiv = document.getElementById("category-list");
   try {
-    // Fetch menu based on the category ID
+    // Fetch the category of the menu based on its ID
     const title = document.querySelector("title");
     const pageTitle = document.getElementById("top");
     const menuCategoryResponse = await fetch(menuCategoryUrl);
